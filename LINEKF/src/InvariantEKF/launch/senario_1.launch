@@ -1,0 +1,45 @@
+<launch>
+
+    <!-- Sensor MSG topic -->
+    <param name="GPS_TOPIC"  type="string" value="/NeoM8p/Gps_rear"/>
+    <param name="IMU_TOPIC"  type="string" value="/imu/data"/>
+    <!-- Config PARAM -->
+    <param name="IS_ZERO_UPDATE"  type="int" value="1"/>
+    <param name="IS_WHEEL_UPDATE" type="int" value="0"/>
+    <param name="IS_GPS_VELOCITY_UPDATE"  type="int" value="1"/>
+    <param name="IS_GPS_POSITION_UPDATE"  type="int" value="1"/>
+
+    <param name="IS_VERBOSE_MODE" type="int" value="0"/>
+    
+    <!-- POSE INITIAL PARAM -->
+    <param name="INIT_PITCH" type = "double" value="0"/>
+    <param name="INIT_ROLL" type = "double" value="0"/>
+    <param name="INIT_YAW" type = "double" value="-1.57"/>
+
+    <!-- IMU TO GPS TRANS -->
+    <param name="L_B_0" type = "double" value="0"/>
+    <param name="L_B_1" type = "double" value="0"/>
+    <param name="L_B_2" type = "double" value="0"/>
+
+    <!-- IMU BIAS PARAM -->   
+    <param name="ACC_STD" type = "double" value="1e-2"/>
+    <param name="GYRO_STD" type = "double" value="1e-4"/>
+    <param name="ACC_BIAS_STD" type = "double" value="1e-8"/>
+    <param name="GYRO_BIAS_STD" type = "double" value="1e-6"/>
+
+    <!-- GPS NOISE PARAM -->
+    <param name="GPS_POS_STD_0" type = "double" value="0.1"/>
+    <param name="GPS_POS_STD_1" type = "double" value="0.1"/>
+    <param name="GPS_POS_STD_2" type = "double" value="0.2"/>
+
+    <param name="GPS_VEL_STD_0" type = "double" value="0.02"/>
+    <param name="GPS_VEL_STD_1" type = "double" value="0.02"/>
+    <param name="GPS_VEL_STD_2" type = "double" value="0.02"/>
+
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find invariant_ekf)/config/rviz.rviz"/>
+    <node pkg="invariant_ekf" type="InvariantEKF" name="InvariantEKF" output="screen"/>
+    <node pkg="rosbag" type="play" name="play" args="--clock -r 2 /home/zzh/ROS/9.Bags/2020-11-25/2020-11-25-16-34-50.bag"/>
+
+</launch>
+
+

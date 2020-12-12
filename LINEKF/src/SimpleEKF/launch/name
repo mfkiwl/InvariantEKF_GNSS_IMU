@@ -1,0 +1,1 @@
+ <node pkg="rosbag" type="play" name="play" args="--clock -r 5 $(find )/bag/2020_01_01/2020-01-01-15-11-14.bag"/>
