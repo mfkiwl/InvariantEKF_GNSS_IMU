@@ -1,0 +1,5 @@
+.vscode/
+/LINEKF/build
+/LINEKF/devel
+/LINEKF/src/CMakeLists.txt
+/LINEKF/.catkin_workspace
